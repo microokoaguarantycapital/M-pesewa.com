@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-PESEWA - Emergency Micro-Lending in Trusted Circles</title>
+    <meta name="description" content="Emergency micro-lending platform built on trusted social groups across Africa. Borrow for urgent needs from people you know.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#0A65FC">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">₵</div>
+                <h1 class="logo-text">M-PESEWA</h1>
+                <span class="logo-tagline">Trusted Circles</span>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="pages/countries/index.html" class="nav-link">Countries</a>
+                <a href="pages/groups.html" class="nav-link">Groups</a>
+                <a href="pages/lending.html" class="nav-link">Lend</a>
+                <a href="pages/borrowing.html" class="nav-link">Borrow</a>
+                <a href="pages/dashboard/borrower-dashboard.html" class="nav-link">Dashboard</a>
+                <a href="pages/about.html" class="nav-link">About</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="country-selector">
+                    <select id="countrySelect" class="country-dropdown">
+                        <option value="">Select Country</option>
+                        <option value="kenya">Kenya 🇰🇪</option>
+                        <option value="uganda">Uganda 🇺🇬</option>
+                        <option value="tanzania">Tanzania 🇹🇿</option>
+                        <option value="rwanda">Rwanda 🇷🇼</option>
+                        <option value="burundi">Burundi 🇧🇮</option>
+                        <option value="somalia">Somalia 🇸🇴</option>
+                        <option value="south-sudan">South Sudan 🇸🇸</option>
+                        <option value="ethiopia">Ethiopia 🇪🇹</option>
+                        <option value="congo">Congo 🇨🇬</option>
+                        <option value="nigeria">Nigeria 🇳🇬</option>
+                        <option value="south-africa">South Africa 🇿🇦</option>
+                        <option value="ghana">Ghana 🇬🇭</option>
+                    </select>
+                </div>
+                
+                <div class="auth-buttons">
+                    <button id="loginBtn" class="btn btn-outline">Login</button>
+                    <button id="registerBtn" class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo-section">
+                <div class="logo-icon">₵</div>
+                <h2 class="logo-text">M-PESEWA</h2>
+            </div>
+            <button class="close-menu" id="closeMenuBtn">&times;</button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+            <a href="pages/countries/index.html" class="mobile-nav-link">Countries</a>
+            <a href="pages/groups.html" class="mobile-nav-link">Groups</a>
+            <a href="pages/lending.html" class="mobile-nav-link">Lend</a>
+            <a href="pages/borrowing.html" class="mobile-nav-link">Borrow</a>
+            <a href="pages/dashboard/borrower-dashboard.html" class="mobile-nav-link">Dashboard</a>
+            <a href="pages/about.html" class="mobile-nav-link">About</a>
+            <a href="pages/contact.html" class="mobile-nav-link">Contact</a>
+            <a href="pages/qa.html" class="mobile-nav-link">Q&A</a>
+            <a href="pages/blacklist.html" class="mobile-nav-link">Blacklist</a>
+            <a href="pages/debt-collectors.html" class="mobile-nav-link">Collectors</a>
+        </nav>
+        <div class="mobile-auth">
+            <button class="btn btn-outline btn-block">Login</button>
+            <button class="btn btn-primary btn-block">Register</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="floating-circle circle-1"></div>
+            <div class="floating-circle circle-2"></div>
+            <div class="floating-circle circle-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">Emergency support from people you trust</h2>
+                    <p class="hero-subtitle">Borrow or lend short-term emergency loans inside verified groups across Africa</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">Active Groups</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">₵1.2B+</span>
+                            <span class="stat-label">Total Lent</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">Repayment Rate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">700K+</span>
+                            <span class="stat-label">Families Helped</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="#registration" class="btn btn-primary btn-large">Get Started</a>
+                    <a href="#how-it-works" class="btn btn-outline btn-large">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <h2 class="section-title">Emergency Loan Categories</h2>
+            <p class="section-subtitle">14 specific needs for urgent situations</p>
+            
+            <div class="categories-grid">
+                <!-- 14 Categories -->
+                <div class="category-card floating-card">
+                    <div class="category-icon">🚌</div>
+                    <h3 class="category-title">M-PESEWA Fare</h3>
+                    <p class="category-description">Move forward when transport costs block you.</p>
+                    <div class="category-tag">Transport</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">📱</div>
+                    <h3 class="category-title">M-PESEWA Credit/Airtime</h3>
+                    <p class="category-description">Stay connected when your bundle runs out.</p>
+                    <div class="category-tag">Connectivity</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">🌐</div>
+                    <h3 class="category-title">M-PESEWA Wi-Fi/Internet</h3>
+                    <p class="category-description">Access the internet when it matters most.</p>
+                    <div class="category-tag">Internet</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">🔥</div>
+                    <h3 class="category-title">M-PESEWA Cooking Gas</h3>
+                    <p class="category-description">Cook today, repay in days.</p>
+                    <div class="category-tag">Cooking</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">🍲</div>
+                    <h3 class="category-title">M-PESEWA Food</h3>
+                    <p class="category-description">No one should sleep hungry.</p>
+                    <div class="category-tag">Food</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">💼</div>
+                    <h3 class="category-title">M-PESEWA Advance</h3>
+                    <p class="category-description">Salary advance for urgent needs.</p>
+                    <div class="category-tag">Advance</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">🛠️</div>
+                    <h3 class="category-title">M-PESEWA Credo</h3>
+                    <p class="category-description">Fix urgent tools and repairs fast.</p>
+                    <div class="category-tag">Repairs</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">💧</div>
+                    <h3 class="category-title">M-PESEWA Water Bill</h3>
+                    <p class="category-description">Keep water flowing at home.</p>
+                    <div class="category-tag">Water</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">⛽</div>
+                    <h3 class="category-title">M-PESEWA Bike/Car/Tuktuk Fuel</h3>
+                    <p class="category-description">Keep moving, no matter the ride.</p>
+                    <div class="category-tag">Fuel</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">🔧</div>
+                    <h3 class="category-title">M-PESEWA Bike/Car/Tuktuk Repair</h3>
+                    <p class="category-description">Small repairs, quick solutions.</p>
+                    <div class="category-tag">Vehicle Repair</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">💊</div>
+                    <h3 class="category-title">M-PESEWA Medicine</h3>
+                    <p class="category-description">Health cannot wait.</p>
+                    <div class="category-tag">Health</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">💡</div>
+                    <h3 class="category-title">M-PESEWA Electricity Tokens</h3>
+                    <p class="category-description">Stay powered.</p>
+                    <div class="category-tag">Electricity</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">🎓</div>
+                    <h3 class="category-title">M-PESEWA School Fees</h3>
+                    <p class="category-description">Education comes first.</p>
+                    <div class="category-tag">Education</div>
+                </div>
+                
+                <div class="category-card floating-card">
+                    <div class="category-icon">📺</div>
+                    <h3 class="category-title">M-PESEWA TV Subscription</h3>
+                    <p class="category-description">Stay informed.</p>
+                    <div class="category-tag">Entertainment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration-section" id="registration">
+        <div class="container">
+            <h2 class="section-title">Join M-PESEWA - Choose Your Role</h2>
+            <p class="section-subtitle">Maximize your financial flexibility - Be both a Borrower and Lender</p>
+            
+            <div class="role-selector">
+                <button class="role-tab active" data-role="borrower">Borrower Registration</button>
+                <button class="role-tab" data-role="lender">Lender Registration</button>
+                <button class="role-tab" data-role="both">Register as Both</button>
+            </div>
+            
+            <!-- Borrower Registration Form -->
+            <div class="registration-form active" id="borrowerForm">
+                <h3>Borrower Registration Form</h3>
+                <form id="borrowerRegistration">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="borrowerFullName">Full Name *</label>
+                            <input type="text" id="borrowerFullName" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="borrowerNationalId">National ID Number *</label>
+                            <input type="text" id="borrowerNationalId" required placeholder="Enter your national ID">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="borrowerPhone">Phone Number *</label>
+                            <input type="tel" id="borrowerPhone" required placeholder="e.g., +254712345678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="borrowerEmail">Email Address (Optional)</label>
+                            <input type="email" id="borrowerEmail" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="borrowerCountry">Country *</label>
+                            <select id="borrowerCountry" required>
+                                <option value="">Select Country</option>
+                                <option value="kenya">Kenya</option>
+                                <option value="uganda">Uganda</option>
+                                <option value="tanzania">Tanzania</option>
+                                <option value="rwanda">Rwanda</option>
+                                <option value="burundi">Burundi</option>
+                                <option value="somalia">Somalia</option>
+                                <option value="south-sudan">South Sudan</option>
+                                <option value="ethiopia">Ethiopia</option>
+                                <option value="congo">Congo</option>
+                                <option value="nigeria">Nigeria</option>
+                                <option value="south-africa">South Africa</option>
+                                <option value="ghana">Ghana</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="borrowerLocation">Location *</label>
+                            <input type="text" id="borrowerLocation" required placeholder="City, Town, or Village">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="borrowerOccupation">Occupation *</label>
+                            <input type="text" id="borrowerOccupation" required placeholder="Your profession or work">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nextOfKinPhone">Next of Kin Phone *</label>
+                            <input type="tel" id="nextOfKinPhone" required placeholder="Next of kin contact">
+                        </div>
+                    </div>
+                    
+                    <div class="guarantors-section">
+                        <h4>Guarantors / Referrers (Required)</h4>
+                        <p class="form-help">Provide two people who know you well and can vouch for you</p>
+                        
+                        <div class="guarantors-grid">
+                            <div class="guarantor-form">
+                                <h5>Guarantor 1</h5>
+                                <div class="form-group">
+                                    <label for="guarantor1Name">Full Name *</label>
+                                    <input type="text" id="guarantor1Name" required placeholder="Guarantor's full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="guarantor1Phone">Phone Number *</label>
+                                    <input type="tel" id="guarantor1Phone" required placeholder="Guarantor's phone">
+                                </div>
+                            </div>
+                            
+                            <div class="guarantor-form">
+                                <h5>Guarantor 2</h5>
+                                <div class="form-group">
+                                    <label for="guarantor2Name">Full Name *</label>
+                                    <input type="text" id="guarantor2Name" required placeholder="Guarantor's full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="guarantor2Phone">Phone Number *</label>
+                                    <input type="tel" id="guarantor2Phone" required placeholder="Guarantor's phone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary btn-large">Register as Borrower</button>
+                        <p class="form-note">Borrowers pay NO subscription fees. Only lenders pay monthly subscriptions.</p>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Lender Registration Form -->
+            <div class="registration-form" id="lenderForm">
+                <h3>Lender Registration Form</h3>
+                <form id="lenderRegistration">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="lenderFullName">Full Name *</label>
+                            <input type="text" id="lenderFullName" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lenderBrandName">Brand/Nickname (Optional)</label>
+                            <input type="text" id="lenderBrandName" placeholder="Your lending brand name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lenderPhone">Phone Number *</label>
+                            <input type="tel" id="lenderPhone" required placeholder="e.g., +254712345678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lenderEmail">Email Address (Optional)</label>
+                            <input type="email" id="lenderEmail" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lenderCountry">Country *</label>
+                            <select id="lenderCountry" required>
+                                <option value="">Select Country</option>
+                                <option value="kenya">Kenya</option>
+                                <option value="uganda">Uganda</option>
+                                <option value="tanzania">Tanzania</option>
+                                <option value="rwanda">Rwanda</option>
+                                <option value="burundi">Burundi</option>
+                                <option value="somalia">Somalia</option>
+                                <option value="south-sudan">South Sudan</option>
+                                <option value="ethiopia">Ethiopia</option>
+                                <option value="congo">Congo</option>
+                                <option value="nigeria">Nigeria</option>
+                                <option value="south-africa">South Africa</option>
+                                <option value="ghana">Ghana</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lenderLocation">Location *</label>
+                            <input type="text" id="lenderLocation" required placeholder="City, Town, or Village">
+                        </div>
+                    </div>
+                    
+                    <div class="subscription-tier">
+                        <h4>Select Subscription Tier *</h4>
+                        <p class="form-help">Choose your lending capacity. Subscription expires on the 28th of each month.</p>
+                        
+                        <div class="tier-options">
+                            <div class="tier-card" data-tier="basic">
+                                <div class="tier-header">
+                                    <h5>Basic Tier</h5>
+                                    <div class="tier-badge">≤₵1,500/week</div>
+                                </div>
+                                <div class="tier-price">
+                                    <div class="price-option">
+                                        <span class="price">₵50</span>
+                                        <span class="period">Monthly</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵250</span>
+                                        <span class="period">Bi-Annual</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵500</span>
+                                        <span class="period">Annual</span>
+                                    </div>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>No CRB check required</li>
+                                    <li>Basic borrower verification</li>
+                                    <li>Max ₵1,500 per loan</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tier-card active" data-tier="premium">
+                                <div class="tier-header">
+                                    <h5>Premium Tier</h5>
+                                    <div class="tier-badge">≤₵5,000/week</div>
+                                </div>
+                                <div class="tier-price">
+                                    <div class="price-option">
+                                        <span class="price">₵250</span>
+                                        <span class="period">Monthly</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵1,500</span>
+                                        <span class="period">Bi-Annual</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵2,500</span>
+                                        <span class="period">Annual</span>
+                                    </div>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>No CRB check required</li>
+                                    <li>Enhanced borrower verification</li>
+                                    <li>Max ₵5,000 per loan</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tier-card" data-tier="super">
+                                <div class="tier-header">
+                                    <h5>Super Tier</h5>
+                                    <div class="tier-badge">≤₵20,000/week</div>
+                                </div>
+                                <div class="tier-price">
+                                    <div class="price-option">
+                                        <span class="price">₵1,000</span>
+                                        <span class="period">Monthly</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵5,000</span>
+                                        <span class="period">Bi-Annual</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵8,500</span>
+                                        <span class="period">Annual</span>
+                                    </div>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>CRB check required</li>
+                                    <li>Full borrower verification</li>
+                                    <li>Max ₵20,000 per loan</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tier-card" data-tier="lender-of-lenders">
+                                <div class="tier-header">
+                                    <h5>Lender of Lenders</h5>
+                                    <div class="tier-badge">≤₵50,000/month</div>
+                                </div>
+                                <div class="tier-price">
+                                    <div class="price-option">
+                                        <span class="price">₵500</span>
+                                        <span class="period">Monthly</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵3,500</span>
+                                        <span class="period">Bi-Annual</span>
+                                    </div>
+                                    <div class="price-option">
+                                        <span class="price">₵6,500</span>
+                                        <span class="period">Annual</span>
+                                    </div>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>Lend to other lenders</li>
+                                    <li>Set your own interest rates</li>
+                                    <li>Max ₵50,000 per lender</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <input type="hidden" id="selectedTier" value="premium">
+                    </div>
+                    
+                    <div class="form-footer">
+                        <div class="subscription-notice">
+                            <div class="notice-icon">💳</div>
+                            <div class="notice-content">
+                                <h5>Subscription Required</h5>
+                                <p>After registration, you will be redirected to make your first subscription payment. Access to the lending platform will be activated after payment confirmation.</p>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Register as Lender</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How M-PESEWA Works</h2>
+            <p class="section-subtitle">Emergency micro-lending powered by trust, not institutions</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🌍</div>
+                    <h3 class="step-title">Select Your Country</h3>
+                    <p class="step-description">Choose from 13 African countries. All lending happens within country borders only.</p>
+                    <ul class="step-features">
+                        <li>Country-specific groups</li>
+                        <li>Local currency operations</li>
+                        <li>No cross-border lending</li>
+                    </ul>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">👥</div>
+                    <h3 class="step-title">Join Trusted Groups</h3>
+                    <p class="step-description">Join or create groups with people you trust. Maximum 1,000 members per group.</p>
+                    <ul class="step-features">
+                        <li>Referral-only entry</li>
+                        <li>Minimum 5 members</li>
+                        <li>Group founder moderation</li>
+                    </ul>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">💰</div>
+                    <h3 class="step-title">Register Your Role</h3>
+                    <p class="step-description">Register as borrower, lender, or both. Lenders must select subscription tier.</p>
+                    <ul class="step-features">
+                        <li>Dual role system</li>
+                        <li>No fees for borrowers</li>
+                        <li>Subscription-based lending</li>
+                    </ul>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">📝</div>
+                    <h3 class="step-title">Start Lending/Borrowing</h3>
+                    <p class="step-description">Borrow for emergency needs or lend to earn 10% weekly interest.</p>
+                    <ul class="step-features">
+                        <li>14 emergency categories</li>
+                        <li>7-day repayment period</li>
+                        <li>Manual ledger updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Country Login Section -->
+    <section class="country-login-section">
+        <div class="container">
+            <h2 class="section-title">Select Your Country Dashboard</h2>
+            <p class="section-subtitle">Access local groups and join by referral in your country</p>
+            
+            <div class="countries-grid">
+                <a href="pages/countries/kenya.html" class="country-card">
+                    <div class="country-flag">🇰🇪</div>
+                    <h3 class="country-name">Kenya</h3>
+                    <p class="country-currency">KSh (Kenyan Shilling)</p>
+                    <div class="country-stats">
+                        <span>2,500+ Groups</span>
+                        <span>Active Now</span>
+                    </div>
+                </a>
+                
+                <a href="pages/countries/uganda.html" class="country-card">
+                    <div class="country-flag">🇺🇬</div>
+                    <h3 class="country-name">Uganda</h3>
+                    <p class="country-currency">UGX (Ugandan Shilling)</p>
+                    <div class="country-stats">
+                        <span>1,800+ Groups</span>
+                        <span>Active Now</span>
+                    </div>
+                </a>
+                
+                <a href="pages/countries/tanzania.html" class="country-card">
+                    <div class="country-flag">🇹🇿</div>
+                    <h3 class="country-name">Tanzania</h3>
+                    <p class="country-currency">TZS (Tanzanian Shilling)</p>
+                    <div class="country-stats">
+                        <span>1,200+ Groups</span>
+                        <span>Active Now</span>
+                    </div>
+                </a>
+                
+                <a href="pages/countries/rwanda.html" class="country-card">
+                    <div class="country-flag">🇷🇼</div>
+                    <h3 class="country-name">Rwanda</h3>
+                    <p class="country-currency">RWF (Rwandan Franc)</p>
+                    <div class="country-stats">
+                        <span>900+ Groups</span>
+                        <span>Active Now</span>
+                    </div>
+                </a>
+                
+                <a href="pages/countries/ghana.html" class="country-card">
+                    <div class="country-flag">🇬🇭</div>
+                    <h3 class="country-name">Ghana</h3>
+                    <p class="country-currency">GHS (Ghanaian Cedi)</p>
+                    <div class="country-stats">
+                        <span>1,500+ Groups</span>
+                        <span>Active Now</span>
+                    </div>
+                </a>
+                
+                <a href="pages/countries/nigeria.html" class="country-card">
+                    <div class="country-flag">🇳🇬</div>
+                    <h3 class="country-name">Nigeria</h3>
+                    <p class="country-currency">NGN (Nigerian Naira)</p>
+                    <div class="country-stats">
+                        <span>3,000+ Groups</span>
+                        <span>Active Now</span>
+                    </div>
+                </a>
+                
+                <a href="pages/countries/index.html" class="country-card view-all">
+                    <div class="country-flag">🌍</div>
+                    <h3 class="country-name">View All Countries</h3>
+                    <p class="country-currency">13 African Countries</p>
+                    <div class="country-stats">
+                        <span>10,000+ Groups</span>
+                        <span>Total Platform</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            <p class="section-subtitle">Real people, real emergencies, real solutions</p>
+            
+            <div class="stories-container">
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">👩</div>
+                        <div class="story-info">
+                            <h4 class="story-name">Mama Jimmy</h4>
+                            <div class="story-location">Nairobi, Kenya</div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <p>"My gas cylinder ran out while cooking dinner. With no money until payday, I borrowed ₵1,200 through M-PESEWA and repaid after 7 days with 10% interest."</p>
+                        <div class="story-details">
+                            <span class="detail-item">🔥 Cooking Gas</span>
+                            <span class="detail-item">₵1,200 Loan</span>
+                            <span class="detail-item">7 Days</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">👨</div>
+                        <div class="story-info">
+                            <h4 class="story-name">John Kimani</h4>
+                            <div class="story-location">Kampala, Uganda</div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <p>"Stranded at home with a job interview across town. Borrowed ₵250 for transport through M-PESEWA, got the job, and repaid in 7 days."</p>
+                        <div class="story-details">
+                            <span class="detail-item">🚌 Transport</span>
+                            <span class="detail-item">₵250 Loan</span>
+                            <span class="detail-item">7 Days</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">👨‍💼</div>
+                        <div class="story-info">
+                            <h4 class="story-name">Pastor Ndungu</h4>
+                            <div class="story-location">Dar es Salaam, Tanzania</div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <p>"Running an online ministry when my data ran out. Borrowed ₵1,000 for internet bundles, continued my work, and repaid within the week."</p>
+                        <div class="story-details">
+                            <span class="detail-item">📱 Data/Airtime</span>
+                            <span class="detail-item">₵1,000 Loan</span>
+                            <span class="detail-item">7 Days</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">🏍️</div>
+                        <div class="story-info">
+                            <h4 class="story-name">Ibrahim</h4>
+                            <div class="story-location">Accra, Ghana</div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <p>"My boda boda ran out of fuel while transporting a passenger. Borrowed ₵500 through M-PESEWA, completed the journey, and repaid with interest."</p>
+                        <div class="story-details">
+                            <span class="detail-item">⛽ Vehicle Fuel</span>
+                            <span class="detail-item">₵500 Loan</span>
+                            <span class="detail-item">7 Days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">₵</div>
+                        <h3 class="logo-text">M-PESEWA</h3>
+                    </div>
+                    <p class="footer-description">
+                        Emergency Micro-Lending in Trusted Circles Across Africa. 
+                        Helping communities solve urgent needs together.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/countries/index.html">Countries</a></li>
+                        <li><a href="pages/groups.html">Groups</a></li>
+                        <li><a href="pages/lending.html">Lending</a></li>
+                        <li><a href="pages/borrowing.html">Borrowing</a></li>
+                        <li><a href="pages/about.html">About Us</a></li>
+                        <li><a href="pages/qa.html">Q&A</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Platform Sections</h4>
+                    <ul class="footer-links">
+                        <li><a href="pages/blacklist.html">Blacklist</a></li>
+                        <li><a href="pages/debt-collectors.html">Debt Collectors</a></li>
+                        <li><a href="pages/ledger.html">Ledger Management</a></li>
+                        <li><a href="pages/subscriptions.html">Subscriptions</a></li>
+                        <li><a href="pages/dashboard/admin-dashboard.html">Admin Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Country Contacts</h4>
+                    <div class="country-contacts">
+                        <div class="contact-item">
+                            <strong>Kenya:</strong> kenya@m-pesewa.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>Uganda:</strong> uganda@m-pesewa.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>Tanzania:</strong> tanzania@m-pesewa.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>Ghana:</strong> ghana@m-pesewa.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>All Countries:</strong> info@m-pesewa.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2024 M-PESEWA. All rights reserved.</p>
+                </div>
+                
+                <div class="footer-bottom-right">
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Login to M-PESEWA</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginCountry">Select Country *</label>
+                        <select id="loginCountry" required>
+                            <option value="">Choose your country</option>
+                            <option value="kenya">Kenya</option>
+                            <option value="uganda">Uganda</option>
+                            <option value="tanzania">Tanzania</option>
+                            <option value="rwanda">Rwanda</option>
+                            <option value="burundi">Burundi</option>
+                            <option value="somalia">Somalia</option>
+                            <option value="south-sudan">South Sudan</option>
+                            <option value="ethiopia">Ethiopia</option>
+                            <option value="congo">Congo</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="south-africa">South Africa</option>
+                            <option value="ghana">Ghana</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPhone">Phone Number *</label>
+                        <input type="tel" id="loginPhone" required placeholder="Enter registered phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password *</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                
+                <div class="modal-footer">
+                    <p>New to M-PESEWA? <a href="#registration" class="register-link">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install PWA Banner -->
+    <div class="pwa-banner" id="pwaBanner">
+        <div class="banner-content">
+            <div class="banner-icon">📱</div>
+            <div class="banner-text">
+                <h4>Install M-PESEWA App</h4>
+                <p>Get faster access, work offline, and receive notifications</p>
+            </div>
+        </div>
+        <div class="banner-actions">
+            <button class="btn btn-outline btn-small" id="dismissBanner">Later</button>
+            <button class="btn btn-primary btn-small" id="installApp">Install</button>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/pwa.js"></script>
+</body>
+</html>
