@@ -1,0 +1,509 @@
+/* Form Styles */
+.form-section {
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.form-section-title {
+  font-size: 1.25rem;
+  color: var(--deep-navy);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-charcoal);
+  font-size: 0.875rem;
+}
+
+.form-label.required:after {
+  content: " *";
+  color: var(--alert-red);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  color: var(--text-charcoal);
+  transition: all var(--transition-fast);
+  background-color: var(--white);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(10, 101, 252, 0.1);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.form-control.disabled,
+.form-control:disabled {
+  background-color: var(--card-bg);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.form-control.error {
+  border-color: var(--alert-red);
+}
+
+.form-control.error:focus {
+  box-shadow: 0 0 0 3px rgba(255, 68, 1, 0.1);
+}
+
+.form-control.success {
+  border-color: var(--mutual-green);
+}
+
+.form-control.success:focus {
+  box-shadow: 0 0 0 3px rgba(32, 191, 111, 0.1);
+}
+
+/* Form Help Text */
+.form-help {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.form-help.error {
+  color: var(--alert-red);
+}
+
+.form-help.success {
+  color: var(--mutual-green);
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.form-actions-center {
+  justify-content: center;
+}
+
+.form-actions-left {
+  justify-content: flex-start;
+}
+
+/* Checkboxes and Radio Buttons */
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkbox-item,
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-item input[type="checkbox"],
+.radio-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.checkbox-item label,
+.radio-item label {
+  font-size: 0.875rem;
+  color: var(--text-charcoal);
+  cursor: pointer;
+}
+
+.checkbox-inline,
+.radio-inline {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Select Boxes */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper:after {
+  content: "▼";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 0.75rem;
+}
+
+.select-wrapper select {
+  appearance: none;
+  padding-right: 2.5rem;
+}
+
+/* File Inputs */
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background-color: var(--card-bg);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.file-input-label:hover {
+  border-color: var(--primary-blue);
+  background-color: var(--soft-blue);
+}
+
+.file-input-label.has-file {
+  border-style: solid;
+  border-color: var(--mutual-green);
+  background-color: var(--trust-mint);
+  color: var(--stability-green);
+}
+
+/* Form Validation */
+.form-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.validation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.validation-item.valid {
+  color: var(--mutual-green);
+}
+
+.validation-item.invalid {
+  color: var(--alert-red);
+}
+
+.validation-icon {
+  font-size: 0.875rem;
+}
+
+/* Search Forms */
+.search-form {
+  position: relative;
+}
+
+.search-input {
+  padding-right: 3rem;
+}
+
+.search-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Filter Forms */
+.filter-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/* Login/Register Forms */
+.auth-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.auth-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-form-title {
+  font-size: 1.5rem;
+  color: var(--deep-navy);
+  margin-bottom: 0.5rem;
+}
+
+.auth-form-subtitle {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.auth-form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.auth-form-footer a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Loan Application Form */
+.loan-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.loan-amount-input {
+  position: relative;
+}
+
+.loan-amount-prefix {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.loan-amount-input .form-control {
+  padding-left: 2.5rem;
+}
+
+.loan-calculator {
+  background-color: var(--trust-mint);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.loan-calc-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.loan-calc-label {
+  color: var(--stability-green);
+}
+
+.loan-calc-value {
+  color: var(--text-charcoal);
+  font-weight: 500;
+}
+
+.loan-calc-total {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+/* Subscription Form */
+.subscription-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.subscription-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.subscription-option {
+  position: relative;
+}
+
+.subscription-option input[type="radio"] {
+  display: none;
+}
+
+.subscription-card {
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  background-color: var(--white);
+}
+
+.subscription-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+}
+
+.subscription-option input[type="radio"]:checked + .subscription-card {
+  border-color: var(--primary-blue);
+  background-color: var(--soft-blue);
+}
+
+.subscription-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.subscription-name {
+  font-size: 1.125rem;
+  color: var(--deep-navy);
+  margin: 0;
+}
+
+.subscription-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.subscription-period {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.subscription-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.subscription-features li {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.subscription-features li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--mutual-green);
+}
+
+.subscription-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Responsive Forms */
+@media (max-width: 768px) {
+  .form-section {
+    padding: 1.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+  }
+  
+  .filter-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .subscription-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-inline,
+  .radio-inline {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-section {
+    padding: 1rem;
+  }
+  
+  .auth-form {
+    padding: 1.5rem;
+  }
+  
+  .loan-form {
+    padding: 0;
+  }
+}
