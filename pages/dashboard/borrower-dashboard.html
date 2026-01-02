@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrower Dashboard - M-PESEWA</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../assets/images/logo.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#20BF6F">
+</head>
+<body class="borrower-dashboard">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-brand">
+                <a href="../../index.html" class="logo-link">
+                    <div class="logo-icon">₵</div>
+                    <span class="logo-text">M-PESEWA</span>
+                    <span class="logo-subtitle">Borrower Dashboard</span>
+                </a>
+            </div>
+
+            <div class="dashboard-user">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <span class="user-name" id="borrowerName">Loading...</span>
+                        <span class="user-role">Borrower</span>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <button class="btn-icon" id="notificationsBtn">
+                        <span class="icon">🔔</span>
+                        <span class="badge" id="notificationCount">0</span>
+                    </button>
+                    <button class="btn-icon" id="switchRoleBtn">
+                        <span class="icon">🔄</span>
+                        <span class="tooltip">Switch to Lender</span>
+                    </button>
+                    <button class="btn btn-outline btn-small" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-details">
+                    <span class="user-name" id="mobileBorrowerName">Loading...</span>
+                    <span class="user-role">Borrower</span>
+                </div>
+            </div>
+            <button class="close-menu" id="closeMenuBtn">&times;</button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="./borrower-dashboard.html" class="mobile-nav-link active">
+                <span class="icon">📊</span> Dashboard
+            </a>
+            <a href="../borrowing.html" class="mobile-nav-link">
+                <span class="icon">💰</span> Borrow
+            </a>
+            <a href="../groups.html" class="mobile-nav-link">
+                <span class="icon">👥</span> My Groups
+            </a>
+            <a href="../ledger.html" class="mobile-nav-link">
+                <span class="icon">📋</span> My Loans
+            </a>
+            <a href="../../pages/countries/index.html" class="mobile-nav-link">
+                <span class="icon">🌍</span> Countries
+            </a>
+            <a href="../subscriptions.html" class="mobile-nav-link">
+                <span class="icon">💳</span> Subscription
+            </a>
+            <a href="../about.html" class="mobile-nav-link">
+                <span class="icon">ℹ️</span> About
+            </a>
+            <a href="../contact.html" class="mobile-nav-link">
+                <span class="icon">📞</span> Contact
+            </a>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <a href="./borrower-dashboard.html" class="sidebar-link active">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="../borrowing.html" class="sidebar-link">
+                    <span class="sidebar-icon">💰</span>
+                    <span class="sidebar-text">Borrow</span>
+                </a>
+                <a href="../groups.html" class="sidebar-link">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">My Groups</span>
+                    <span class="sidebar-badge" id="groupsCount">0</span>
+                </a>
+                <a href="../ledger.html" class="sidebar-link">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">My Loans</span>
+                    <span class="sidebar-badge" id="loansCount">0</span>
+                </a>
+                <a href="../../pages/countries/index.html" class="sidebar-link">
+                    <span class="sidebar-icon">🌍</span>
+                    <span class="sidebar-text">Countries</span>
+                </a>
+                <a href="../subscriptions.html" class="sidebar-link">
+                    <span class="sidebar-icon">💳</span>
+                    <span class="sidebar-text">Subscription</span>
+                </a>
+                <a href="../blacklist.html" class="sidebar-link">
+                    <span class="sidebar-icon">⚫</span>
+                    <span class="sidebar-text">Blacklist</span>
+                </a>
+                <a href="../debt-collectors.html" class="sidebar-link">
+                    <span class="sidebar-icon">💼</span>
+                    <span class="sidebar-text">Collectors</span>
+                </a>
+                <div class="sidebar-divider"></div>
+                <a href="../about.html" class="sidebar-link">
+                    <span class="sidebar-icon">ℹ️</span>
+                    <span class="sidebar-text">About</span>
+                </a>
+                <a href="../qa.html" class="sidebar-link">
+                    <span class="sidebar-icon">❓</span>
+                    <span class="sidebar-text">Q&A</span>
+                </a>
+                <a href="../contact.html" class="sidebar-link">
+                    <span class="sidebar-icon">📞</span>
+                    <span class="sidebar-text">Contact</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-help">
+                    <div class="help-icon">💡</div>
+                    <div class="help-text">
+                        <strong>Need help?</strong>
+                        <p>Contact support for assistance</p>
+                    </div>
+                </div>
+                <a href="../contact.html" class="btn btn-outline btn-block">Get Help</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h1>Welcome back, <span id="welcomeName">Borrower</span>!</h1>
+                    <p>Manage your loans, track repayments, and maintain your reputation.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary" id="quickBorrowBtn">
+                        <span class="btn-icon">💰</span>
+                        Quick Borrow
+                    </button>
+                    <button class="btn btn-outline" id="viewGroupsBtn">
+                        <span class="btn-icon">👥</span>
+                        View Groups
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stats Overview -->
+            <section class="stats-section">
+                <h2 class="section-title">Your Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">💰</div>
+                            <div class="stat-card-trend up">+12%</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="totalBorrowed">₵0</div>
+                            <div class="stat-card-label">Total Borrowed</div>
+                            <div class="stat-card-subtext">Across all groups</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">⏰</div>
+                            <div class="stat-card-trend neutral">0</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="activeLoans">0</div>
+                            <div class="stat-card-label">Active Loans</div>
+                            <div class="stat-card-subtext">Due within 7 days</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">⭐</div>
+                            <div class="stat-card-trend up">+0.5</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="borrowerRating">0.0</div>
+                            <div class="stat-card-label">Your Rating</div>
+                            <div class="stat-card-subtext">Based on lender feedback</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">👥</div>
+                            <div class="stat-card-trend up">+1</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="joinedGroups">0</div>
+                            <div class="stat-card-label">Groups Joined</div>
+                            <div class="stat-card-subtext">Max 4 groups allowed</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Active Loans -->
+            <section class="loans-section">
+                <div class="section-header">
+                    <h2 class="section-title">Active Loans</h2>
+                    <a href="../ledger.html" class="btn btn-text">View All →</a>
+                </div>
+
+                <div class="loans-table-container">
+                    <table class="loans-table">
+                        <thead>
+                            <tr>
+                                <th>Loan ID</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Lender</th>
+                                <th>Due Date</th>
+                                <th>Days Left</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activeLoansTable">
+                            <tr>
+                                <td colspan="8" class="empty-table">
+                                    <div class="empty-state">
+                                        <div class="empty-state-icon">💰</div>
+                                        <h3>No Active Loans</h3>
+                                        <p>You don't have any active loans at the moment.</p>
+                                        <a href="../borrowing.html" class="btn btn-primary">Borrow Now</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Activity</h2>
+                    <button class="btn btn-text" id="refreshActivityBtn">Refresh</button>
+                </div>
+
+                <div class="activity-timeline">
+                    <div class="activity-item">
+                        <div class="activity-icon">💰</div>
+                        <div class="activity-content">
+                            <h4>Loan Approved</h4>
+                            <p>Your loan request for ₵1,500 was approved by John Doe</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">💳</div>
+                        <div class="activity-content">
+                            <h4>Repayment Made</h4>
+                            <p>You made a partial repayment of ₵500 on loan #L-001</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">⭐</div>
+                        <div class="activity-content">
+                            <h4>Rating Updated</h4>
+                            <p>Lender rated you 5 stars for timely repayment</p>
+                            <span class="activity-time">3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">👥</div>
+                        <div class="activity-content">
+                            <h4>Group Joined</h4>
+                            <p>You successfully joined "Family Trust Group"</p>
+                            <span class="activity-time">1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Groups Overview -->
+            <section class="groups-section">
+                <div class="section-header">
+                    <h2 class="section-title">Your Groups</h2>
+                    <a href="../groups.html" class="btn btn-text">Manage Groups →</a>
+                </div>
+
+                <div class="groups-grid" id="borrowerGroups">
+                    <div class="group-card">
+                        <div class="group-card-header">
+                            <div class="group-icon">👨👩👧👦</div>
+                            <div class="group-info">
+                                <h4 class="group-name">Family Trust Group</h4>
+                                <div class="group-stats">
+                                    <span>25 members</span>
+                                    <span>•</span>
+                                    <span>Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-card-body">
+                            <div class="group-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Borrowed</span>
+                                    <span class="metric-value">₵5,000</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Repaid</span>
+                                    <span class="metric-value">₵4,500</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Rating</span>
+                                    <span class="metric-value">4.8/5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-card-footer">
+                            <a href="../groups.html" class="btn btn-outline btn-small">View Group</a>
+                        </div>
+                    </div>
+
+                    <div class="group-card empty-group">
+                        <div class="empty-group-content">
+                            <div class="empty-group-icon">👥</div>
+                            <h4>Join More Groups</h4>
+                            <p>You can join up to 4 groups to increase your borrowing options</p>
+                            <a href="../groups.html" class="btn btn-primary">Browse Groups</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reputation Section -->
+            <section class="reputation-section">
+                <h2 class="section-title">Your Reputation</h2>
+                <div class="reputation-card">
+                    <div class="reputation-header">
+                        <div class="reputation-score">
+                            <div class="score-value">4.8</div>
+                            <div class="score-label">out of 5.0</div>
+                        </div>
+                        <div class="reputation-stars">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star half">⭐</span>
+                        </div>
+                    </div>
+                    <div class="reputation-body">
+                        <div class="reputation-metrics">
+                            <div class="metric">
+                                <span class="metric-label">On-time Repayments</span>
+                                <div class="metric-bar">
+                                    <div class="bar-fill" style="width: 95%"></div>
+                                </div>
+                                <span class="metric-value">95%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Loan Completion</span>
+                                <div class="metric-bar">
+                                    <div class="bar-fill" style="width: 100%"></div>
+                                </div>
+                                <span class="metric-value">100%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Lender Satisfaction</span>
+                                <div class="metric-bar">
+                                    <div class="bar-fill" style="width: 90%"></div>
+                                </div>
+                                <span class="metric-value">90%</span>
+                            </div>
+                        </div>
+                        <div class="reputation-tips">
+                            <h4>Tips to improve your rating:</h4>
+                            <ul>
+                                <li>Always repay on time or early</li>
+                                <li>Communicate with lenders if you need extension</li>
+                                <li>Maintain good standing in all groups</li>
+                                <li>Keep your profile information updated</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Quick Borrow Modal -->
+    <div class="modal" id="quickBorrowModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Quick Borrow</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="quickBorrowForm">
+                    <div class="form-group">
+                        <label for="quickAmount">Amount Needed</label>
+                        <div class="input-with-suffix">
+                            <input type="number" id="quickAmount" class="form-control" placeholder="Enter amount" min="100" max="20000" required>
+                            <span class="input-suffix" id="currencySymbol">₵</span>
+                        </div>
+                        <div class="input-hint">Max: ₵20,000 based on your rating</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quickCategory">Purpose</label>
+                        <select id="quickCategory" class="form-control" required>
+                            <option value="">Select category</option>
+                            <option value="transport">Transport (Fare)</option>
+                            <option value="airtime">Airtime/Credit</option>
+                            <option value="internet">Wi-Fi/Internet</option>
+                            <option value="cooking">Cooking Gas</option>
+                            <option value="food">Food</option>
+                            <option value="advance">Advance Loan</option>
+                            <option value="credo">Credo (Repairs/Tools)</option>
+                            <option value="water">Water Bill</option>
+                            <option value="fuel">Vehicle Fuel</option>
+                            <option value="repair">Vehicle Repair</option>
+                            <option value="medicine">Medicine</option>
+                            <option value="electricity">Electricity Tokens</option>
+                            <option value="school">School Fees</option>
+                            <option value="tv">TV Subscription</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quickGroup">Select Group</label>
+                        <select id="quickGroup" class="form-control" required>
+                            <option value="">Choose a group</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quickRepayment">Preferred Repayment Period</label>
+                        <select id="quickRepayment" class="form-control" required>
+                            <option value="7">7 days (Standard)</option>
+                            <option value="14">14 days (Extended)</option>
+                            <option value="30">30 days (Long-term)</option>
+                        </select>
+                        <div class="input-hint">10% interest per week applies</div>
+                    </div>
+
+                    <div class="calculation-preview">
+                        <h4>Loan Summary</h4>
+                        <div class="summary-item">
+                            <span>Amount:</span>
+                            <span id="previewAmount">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Interest (10%):</span>
+                            <span id="previewInterest">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total Repayment:</span>
+                            <span id="previewTotal">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Daily Payment:</span>
+                            <span id="previewDaily">₵0</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3>Notifications</h3>
+            <button class="btn-icon" id="clearNotificationsBtn">
+                <span class="icon">🗑️</span>
+                Clear All
+            </button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <div class="notification-item">
+                <div class="notification-icon">💰</div>
+                <div class="notification-content">
+                    <h4>Loan Approved</h4>
+                    <p>Your loan request for ₵1,500 has been approved</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">📅</div>
+                <div class="notification-content">
+                    <h4>Payment Due</h4>
+                    <p>Loan #L-001 payment due in 2 days</p>
+                    <span class="notification-time">1 day ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="notifications-footer">
+            <a href="#" class="btn btn-text">View All Notifications</a>
+        </div>
+    </div>
+
+    <script src="../../assets/js/utils.js"></script>
+    <script src="../../assets/js/auth.js"></script>
+    <script src="../../assets/js/roles.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+    <script>
+        // Borrower Dashboard specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in and is a borrower
+            const user = window.utils.getCurrentUser();
+            if (!user || user.role !== 'borrower') {
+                window.showToast('Please login as a borrower to access this dashboard', 'error');
+                setTimeout(() => {
+                    window.location.href = '../../index.html#registration';
+                }, 1500);
+                return;
+            }
+
+            // Update user information
+            document.getElementById('borrowerName').textContent = user.fullName || user.brandName || 'User';
+            document.getElementById('mobileBorrowerName').textContent = user.fullName || user.brandName || 'User';
+            document.getElementById('welcomeName').textContent = user.fullName || user.brandName || 'Borrower';
+
+            // Setup event listeners
+            document.getElementById('quickBorrowBtn').addEventListener('click', function() {
+                document.getElementById('quickBorrowModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            document.getElementById('viewGroupsBtn').addEventListener('click', function() {
+                window.location.href = '../groups.html';
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                window.utils.clearCurrentUser();
+                window.showToast('Logged out successfully', 'success');
+                setTimeout(() => {
+                    window.location.href = '../../index.html';
+                }, 1000);
+            });
+
+            document.getElementById('switchRoleBtn').addEventListener('click', function() {
+                window.showToast('Switch to lender role from the main registration page', 'info');
+                setTimeout(() => {
+                    window.location.href = '../../index.html#registration';
+                }, 1500);
+            });
+
+            document.getElementById('notificationsBtn').addEventListener('click', function() {
+                const panel = document.getElementById('notificationsPanel');
+                panel.classList.toggle('active');
+            });
+
+            // Close modals
+            document.querySelectorAll('.modal-close, .close-modal').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.modal').classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Quick borrow form
+            const quickBorrowForm = document.getElementById('quickBorrowForm');
+            const quickAmount = document.getElementById('quickAmount');
+            const quickRepayment = document.getElementById('quickRepayment');
+
+            function updateQuickBorrowPreview() {
+                const amount = parseFloat(quickAmount.value) || 0;
+                const period = parseInt(quickRepayment.value) || 7;
+                const weeks = period / 7;
+                const interest = amount * 0.10 * weeks;
+                const total = amount + interest;
+                const daily = total / period;
+
+                document.getElementById('previewAmount').textContent = window.utils.formatCurrency(amount);
+                document.getElementById('previewInterest').textContent = window.utils.formatCurrency(interest);
+                document.getElementById('previewTotal').textContent = window.utils.formatCurrency(total);
+                document.getElementById('previewDaily').textContent = window.utils.formatCurrency(daily);
+            }
+
+            quickAmount.addEventListener('input', updateQuickBorrowPreview);
+            quickRepayment.addEventListener('change', updateQuickBorrowPreview);
+
+            quickBorrowForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const amount = parseFloat(quickAmount.value);
+                const category = document.getElementById('quickCategory').value;
+                const group = document.getElementById('quickGroup').value;
+                const period = parseInt(quickRepayment.value);
+
+                if (!category || !group) {
+                    window.showToast('Please select category and group', 'error');
+                    return;
+                }
+
+                // Simulate loan request
+                window.showToast('Loan request submitted to group lenders', 'success');
+                
+                // Close modal
+                document.getElementById('quickBorrowModal').classList.remove('active');
+                document.body.style.overflow = '';
+
+                // Reset form
+                quickBorrowForm.reset();
+                updateQuickBorrowPreview();
+            });
+
+            // Load user groups for quick borrow
+            const userGroups = window.utils.getItem('m-pesewa-user-groups', []);
+            const quickGroupSelect = document.getElementById('quickGroup');
+            userGroups.forEach(group => {
+                const option = document.createElement('option');
+                option.value = group.id;
+                option.textContent = group.name;
+                quickGroupSelect.appendChild(option);
+            });
+
+            // Update dashboard stats
+            updateDashboardStats();
+
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('active');
+            });
+
+            document.getElementById('closeMenuBtn').addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        function updateDashboardStats() {
+            // Simulate loading data
+            setTimeout(() => {
+                document.getElementById('totalBorrowed').textContent = '₵5,000';
+                document.getElementById('activeLoans').textContent = '2';
+                document.getElementById('borrowerRating').textContent = '4.8';
+                document.getElementById('joinedGroups').textContent = '2';
+                document.getElementById('groupsCount').textContent = '2';
+                document.getElementById('loansCount').textContent = '2';
+                document.getElementById('notificationCount').textContent = '2';
+            }, 500);
+        }
+    </script>
+</body>
+</html>

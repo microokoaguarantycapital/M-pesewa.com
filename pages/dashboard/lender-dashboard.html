@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lender Dashboard - M-PESEWA</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../assets/images/logo.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#0A65FC">
+</head>
+<body class="lender-dashboard">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-brand">
+                <a href="../../index.html" class="logo-link">
+                    <div class="logo-icon">₵</div>
+                    <span class="logo-text">M-PESEWA</span>
+                    <span class="logo-subtitle">Lender Dashboard</span>
+                </a>
+            </div>
+
+            <div class="dashboard-user">
+                <div class="user-info">
+                    <div class="user-avatar">🏦</div>
+                    <div class="user-details">
+                        <span class="user-name" id="lenderName">Loading...</span>
+                        <span class="user-role">
+                            <span id="lenderTier">Premium</span> Lender
+                        </span>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <button class="btn-icon" id="notificationsBtn">
+                        <span class="icon">🔔</span>
+                        <span class="badge" id="notificationCount">0</span>
+                    </button>
+                    <button class="btn-icon" id="subscriptionBtn" title="Subscription Status">
+                        <span class="icon">💳</span>
+                        <span class="badge" id="subscriptionStatus">Active</span>
+                    </button>
+                    <button class="btn-icon" id="switchRoleBtn">
+                        <span class="icon">🔄</span>
+                        <span class="tooltip">Switch to Borrower</span>
+                    </button>
+                    <button class="btn btn-outline btn-small" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="user-info">
+                <div class="user-avatar">🏦</div>
+                <div class="user-details">
+                    <span class="user-name" id="mobileLenderName">Loading...</span>
+                    <span class="user-role">
+                        <span id="mobileLenderTier">Premium</span> Lender
+                    </span>
+                </div>
+            </div>
+            <button class="close-menu" id="closeMenuBtn">&times;</button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="./lender-dashboard.html" class="mobile-nav-link active">
+                <span class="icon">📊</span> Dashboard
+            </a>
+            <a href="../lending.html" class="mobile-nav-link">
+                <span class="icon">💰</span> Lend
+            </a>
+            <a href="../groups.html" class="mobile-nav-link">
+                <span class="icon">👥</span> My Groups
+            </a>
+            <a href="../ledger.html" class="mobile-nav-link">
+                <span class="icon">📋</span> My Ledgers
+            </a>
+            <a href="../../pages/countries/index.html" class="mobile-nav-link">
+                <span class="icon">🌍</span> Countries
+            </a>
+            <a href="../subscriptions.html" class="mobile-nav-link">
+                <span class="icon">💳</span> Subscription
+            </a>
+            <a href="../blacklist.html" class="mobile-nav-link">
+                <span class="icon">⚫</span> Blacklist
+            </a>
+            <a href="../debt-collectors.html" class="mobile-nav-link">
+                <span class="icon">💼</span> Collectors
+            </a>
+            <a href="../about.html" class="mobile-nav-link">
+                <span class="icon">ℹ️</span> About
+            </a>
+            <a href="../contact.html" class="mobile-nav-link">
+                <span class="icon">📞</span> Contact
+            </a>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <a href="./lender-dashboard.html" class="sidebar-link active">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="../lending.html" class="sidebar-link">
+                    <span class="sidebar-icon">💰</span>
+                    <span class="sidebar-text">Lend</span>
+                </a>
+                <a href="../groups.html" class="sidebar-link">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">My Groups</span>
+                    <span class="sidebar-badge" id="groupsCount">0</span>
+                </a>
+                <a href="../ledger.html" class="sidebar-link">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">My Ledgers</span>
+                    <span class="sidebar-badge" id="ledgersCount">0</span>
+                </a>
+                <a href="../../pages/countries/index.html" class="sidebar-link">
+                    <span class="sidebar-icon">🌍</span>
+                    <span class="sidebar-text">Countries</span>
+                </a>
+                <a href="../subscriptions.html" class="sidebar-link">
+                    <span class="sidebar-icon">💳</span>
+                    <span class="sidebar-text">Subscription</span>
+                    <span class="sidebar-badge" id="subscriptionAlert">!</span>
+                </a>
+                <a href="../blacklist.html" class="sidebar-link">
+                    <span class="sidebar-icon">⚫</span>
+                    <span class="sidebar-text">Blacklist</span>
+                    <span class="sidebar-badge" id="blacklistCount">0</span>
+                </a>
+                <a href="../debt-collectors.html" class="sidebar-link">
+                    <span class="sidebar-icon">💼</span>
+                    <span class="sidebar-text">Collectors</span>
+                </a>
+                <div class="sidebar-divider"></div>
+                <a href="../about.html" class="sidebar-link">
+                    <span class="sidebar-icon">ℹ️</span>
+                    <span class="sidebar-text">About</span>
+                </a>
+                <a href="../qa.html" class="sidebar-link">
+                    <span class="sidebar-icon">❓</span>
+                    <span class="sidebar-text">Q&A</span>
+                </a>
+                <a href="../contact.html" class="sidebar-link">
+                    <span class="sidebar-icon">📞</span>
+                    <span class="sidebar-text">Contact</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="subscription-status-sidebar">
+                    <div class="status-icon">💳</div>
+                    <div class="status-text">
+                        <strong id="sidebarTier">Premium Tier</strong>
+                        <p id="sidebarExpiry">Expires: 28th Feb</p>
+                    </div>
+                </div>
+                <a href="../subscriptions.html" class="btn btn-outline btn-block">Manage Subscription</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h1>Welcome, <span id="welcomeName">Lender</span>!</h1>
+                    <p>Manage your lending activity, track repayments, and grow your portfolio.</p>
+                    <div class="lender-stats-quick">
+                        <div class="quick-stat">
+                            <span class="quick-stat-value" id="quickTotalLent">₵0</span>
+                            <span class="quick-stat-label">Total Lent</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="quick-stat-value" id="quickActiveLoans">0</span>
+                            <span class="quick-stat-label">Active Loans</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="quick-stat-value" id="quickBorrowers">0</span>
+                            <span class="quick-stat-label">Borrowers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary" id="quickLendBtn">
+                        <span class="btn-icon">💰</span>
+                        Quick Lend
+                    </button>
+                    <button class="btn btn-outline" id="createGroupBtn">
+                        <span class="btn-icon">👥</span>
+                        Create Group
+                    </button>
+                    <button class="btn btn-outline" id="viewLedgersBtn">
+                        <span class="btn-icon">📋</span>
+                        View Ledgers
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stats Overview -->
+            <section class="stats-section">
+                <h2 class="section-title">Portfolio Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">💰</div>
+                            <div class="stat-card-trend up">+15%</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="totalPortfolio">₵0</div>
+                            <div class="stat-card-label">Total Portfolio</div>
+                            <div class="stat-card-subtext">Principal + Interest</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">📈</div>
+                            <div class="stat-card-trend up">+8%</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="totalInterest">₵0</div>
+                            <div class="stat-card-label">Interest Earned</div>
+                            <div class="stat-card-subtext">10% per week</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">👥</div>
+                            <div class="stat-card-trend up">+3</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="activeBorrowers">0</div>
+                            <div class="stat-card-label">Active Borrowers</div>
+                            <div class="stat-card-subtext">With outstanding loans</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon">📊</div>
+                            <div class="stat-card-trend neutral">0%</div>
+                        </div>
+                        <div class="stat-card-content">
+                            <div class="stat-card-value" id="repaymentRate">0%</div>
+                            <div class="stat-card-label">Repayment Rate</div>
+                            <div class="stat-card-subtext">On-time repayments</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Active Loans -->
+            <section class="loans-section">
+                <div class="section-header">
+                    <h2 class="section-title">Active Loans</h2>
+                    <a href="../ledger.html" class="btn btn-text">Manage All →</a>
+                </div>
+
+                <div class="loans-table-container">
+                    <table class="loans-table">
+                        <thead>
+                            <tr>
+                                <th>Borrower</th>
+                                <th>Amount</th>
+                                <th>Category</th>
+                                <th>Due Date</th>
+                                <th>Days Left</th>
+                                <th>Interest</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activeLoansTable">
+                            <tr>
+                                <td colspan="8" class="empty-table">
+                                    <div class="empty-state">
+                                        <div class="empty-state-icon">💰</div>
+                                        <h3>No Active Loans</h3>
+                                        <p>You don't have any active loans at the moment.</p>
+                                        <button class="btn btn-primary" id="startLendingBtn">Start Lending</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Subscription Status -->
+            <section class="subscription-section">
+                <div class="section-header">
+                    <h2 class="section-title">Subscription Status</h2>
+                    <a href="../subscriptions.html" class="btn btn-text">Upgrade →</a>
+                </div>
+
+                <div class="subscription-card">
+                    <div class="subscription-header">
+                        <div class="subscription-tier">
+                            <div class="tier-icon">🏆</div>
+                            <div class="tier-info">
+                                <h3 id="currentTier">Premium Tier</h3>
+                                <p id="tierLimit">≤ ₵5,000 per week</p>
+                            </div>
+                        </div>
+                        <div class="subscription-status-badge active">Active</div>
+                    </div>
+                    
+                    <div class="subscription-body">
+                        <div class="subscription-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Expiry Date:</span>
+                                <span class="detail-value" id="expiryDate">28th Feb 2024</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Days Remaining:</span>
+                                <span class="detail-value" id="daysRemaining">15 days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Payment Cycle:</span>
+                                <span class="detail-value" id="paymentCycle">Monthly</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Next Payment:</span>
+                                <span class="detail-value" id="nextPayment">₵250</span>
+                            </div>
+                        </div>
+                        
+                        <div class="subscription-progress">
+                            <div class="progress-header">
+                                <span class="progress-label">Subscription Usage</span>
+                                <span class="progress-value" id="usagePercentage">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="usageBar" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>Used: <strong id="usedAmount">₵0</strong></span>
+                                <span>Available: <strong id="availableAmount">₵5,000</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subscription-footer">
+                        <button class="btn btn-primary" id="renewSubscriptionBtn">Renew Now</button>
+                        <button class="btn btn-outline" id="upgradeSubscriptionBtn">Upgrade Tier</button>
+                        <button class="btn btn-text" id="viewDetailsBtn">View Details</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Activity</h2>
+                    <button class="btn btn-text" id="refreshActivityBtn">Refresh</button>
+                </div>
+
+                <div class="activity-timeline">
+                    <div class="activity-item">
+                        <div class="activity-icon">💰</div>
+                        <div class="activity-content">
+                            <h4>Loan Approved</h4>
+                            <p>You approved a loan of ₵2,000 to John Doe</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">💳</div>
+                        <div class="activity-content">
+                            <h4>Repayment Received</h4>
+                            <p>Received ₵500 repayment from Sarah Mwangi</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">⭐</div>
+                        <div class="activity-content">
+                            <h4>Rating Given</h4>
+                            <p>You rated borrower 5 stars for timely repayment</p>
+                            <span class="activity-time">3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">👥</div>
+                        <div class="activity-content">
+                            <h4>Group Created</h4>
+                            <p>You created "Professional Network Group"</p>
+                            <span class="activity-time">1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Borrowers -->
+            <section class="borrowers-section">
+                <div class="section-header">
+                    <h2 class="section-title">Top Borrowers</h2>
+                    <a href="../ledger.html" class="btn btn-text">View All →</a>
+                </div>
+
+                <div class="borrowers-grid" id="topBorrowers">
+                    <div class="borrower-card">
+                        <div class="borrower-header">
+                            <div class="borrower-avatar">👤</div>
+                            <div class="borrower-info">
+                                <h4 class="borrower-name">John Doe</h4>
+                                <div class="borrower-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating">4.2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="borrower-stats">
+                            <div class="stat">
+                                <span class="stat-label">Total Borrowed</span>
+                                <span class="stat-value">₵15,000</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Active Loans</span>
+                                <span class="stat-value">2</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Repayment Rate</span>
+                                <span class="stat-value">98%</span>
+                            </div>
+                        </div>
+                        <div class="borrower-footer">
+                            <button class="btn btn-outline btn-small" data-borrower="john-doe">View Profile</button>
+                            <button class="btn btn-primary btn-small" data-borrower="john-doe">Lend Again</button>
+                        </div>
+                    </div>
+
+                    <div class="borrower-card">
+                        <div class="borrower-header">
+                            <div class="borrower-avatar">👩</div>
+                            <div class="borrower-info">
+                                <h4 class="borrower-name">Sarah Mwangi</h4>
+                                <div class="borrower-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="rating">5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="borrower-stats">
+                            <div class="stat">
+                                <span class="stat-label">Total Borrowed</span>
+                                <span class="stat-value">₵8,500</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Active Loans</span>
+                                <span class="stat-value">1</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Repayment Rate</span>
+                                <span class="stat-value">100%</span>
+                            </div>
+                        </div>
+                        <div class="borrower-footer">
+                            <button class="btn btn-outline btn-small" data-borrower="sarah-m">View Profile</button>
+                            <button class="btn btn-primary btn-small" data-borrower="sarah-m">Lend Again</button>
+                        </div>
+                    </div>
+
+                    <div class="borrower-card empty-borrower">
+                        <div class="empty-borrower-content">
+                            <div class="empty-icon">👥</div>
+                            <h4>Find More Borrowers</h4>
+                            <p>Join more groups to connect with trusted borrowers</p>
+                            <a href="../groups.html" class="btn btn-primary">Browse Groups</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Quick Lend Modal -->
+    <div class="modal" id="quickLendModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Quick Lend</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="quickLendForm">
+                    <div class="form-group">
+                        <label for="lendAmount">Amount to Lend</label>
+                        <div class="input-with-suffix">
+                            <input type="number" id="lendAmount" class="form-control" placeholder="Enter amount" min="100" max="5000" required>
+                            <span class="input-suffix" id="lendCurrencySymbol">₵</span>
+                        </div>
+                        <div class="input-hint" id="tierLimitHint">Your tier limit: ₵5,000 per week</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lendCategory">Loan Category</label>
+                        <select id="lendCategory" class="form-control" required>
+                            <option value="">Select category</option>
+                            <option value="transport">Transport (Fare)</option>
+                            <option value="airtime">Airtime/Credit</option>
+                            <option value="internet">Wi-Fi/Internet</option>
+                            <option value="cooking">Cooking Gas</option>
+                            <option value="food">Food</option>
+                            <option value="advance">Advance Loan</option>
+                            <option value="credo">Credo (Repairs/Tools)</option>
+                            <option value="water">Water Bill</option>
+                            <option value="fuel">Vehicle Fuel</option>
+                            <option value="repair">Vehicle Repair</option>
+                            <option value="medicine">Medicine</option>
+                            <option value="electricity">Electricity Tokens</option>
+                            <option value="school">School Fees</option>
+                            <option value="tv">TV Subscription</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lendBorrower">Select Borrower</label>
+                        <select id="lendBorrower" class="form-control" required>
+                            <option value="">Choose a borrower</option>
+                            <option value="john-doe">John Doe (Rating: 4.8/5)</option>
+                            <option value="sarah-m">Sarah Mwangi (Rating: 5.0/5)</option>
+                            <option value="new-borrower">Add New Borrower</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lendGroup">Group</label>
+                        <select id="lendGroup" class="form-control" required>
+                            <option value="">Select group</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lendPeriod">Repayment Period (Days)</label>
+                        <select id="lendPeriod" class="form-control" required>
+                            <option value="7">7 days (Standard)</option>
+                            <option value="14">14 days (Extended)</option>
+                            <option value="30">30 days (Long-term)</option>
+                        </select>
+                        <div class="input-hint">10% interest per week applies</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lendGuarantors">Guarantors (Optional)</label>
+                        <input type="text" id="lendGuarantors" class="form-control" placeholder="Enter guarantor names or phone numbers">
+                    </div>
+
+                    <div class="calculation-preview">
+                        <h4>Loan Terms</h4>
+                        <div class="summary-item">
+                            <span>Principal:</span>
+                            <span id="previewPrincipal">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Interest (10% per week):</span>
+                            <span id="previewLendInterest">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total Repayment:</span>
+                            <span id="previewLendTotal">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Daily Payment:</span>
+                            <span id="previewLendDaily">₵0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Penalty after due date:</span>
+                            <span id="previewPenalty">5% daily</span>
+                        </div>
+                    </div>
+
+                    <div class="terms-agreement">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeLendTerms" required>
+                            <span>
+                                I confirm that all lending happens off-platform. I will disburse funds directly to the borrower
+                                and update the ledger upon repayment. I understand that M-PESEWA only provides trust infrastructure.
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Approve Loan</button>
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3>Notifications</h3>
+            <button class="btn-icon" id="clearNotificationsBtn">
+                <span class="icon">🗑️</span>
+                Clear All
+            </button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <div class="notification-item">
+                <div class="notification-icon">💰</div>
+                <div class="notification-content">
+                    <h4>Loan Request</h4>
+                    <p>John Doe requested ₵1,500 loan</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+                <button class="btn btn-small btn-primary">Review</button>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">💳</div>
+                <div class="notification-content">
+                    <h4>Payment Received</h4>
+                    <p>Received ₵500 from Sarah Mwangi</p>
+                    <span class="notification-time">1 day ago</span>
+                </div>
+                <button class="btn btn-small btn-outline">Update Ledger</button>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">📅</div>
+                <div class="notification-content">
+                    <h4>Subscription Reminder</h4>
+                    <p>Your subscription expires in 15 days</p>
+                    <span class="notification-time">2 days ago</span>
+                </div>
+                <button class="btn btn-small btn-primary">Renew</button>
+            </div>
+        </div>
+        <div class="notifications-footer">
+            <a href="#" class="btn btn-text">View All Notifications</a>
+        </div>
+    </div>
+
+    <script src="../../assets/js/utils.js"></script>
+    <script src="../../assets/js/auth.js"></script>
+    <script src="../../assets/js/roles.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+    <script>
+        // Lender Dashboard specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in and is a lender
+            const user = window.utils.getCurrentUser();
+            if (!user || user.role !== 'lender') {
+                window.showToast('Please login as a lender to access this dashboard', 'error');
+                setTimeout(() => {
+                    window.location.href = '../../index.html#registration';
+                }, 1500);
+                return;
+            }
+
+            // Update user information
+            const lenderName = user.fullName || user.brandName || 'Lender';
+            const tier = user.subscriptionTier || 'premium';
+            
+            document.getElementById('lenderName').textContent = lenderName;
+            document.getElementById('mobileLenderName').textContent = lenderName;
+            document.getElementById('welcomeName').textContent = lenderName;
+            
+            document.getElementById('lenderTier').textContent = window.utils.getTierName(tier);
+            document.getElementById('mobileLenderTier').textContent = window.utils.getTierName(tier);
+            document.getElementById('sidebarTier').textContent = window.utils.getTierName(tier) + ' Tier';
+            document.getElementById('currentTier').textContent = window.utils.getTierName(tier) + ' Tier';
+
+            // Update subscription information
+            updateSubscriptionInfo(user);
+
+            // Setup event listeners
+            document.getElementById('quickLendBtn').addEventListener('click', function() {
+                document.getElementById('quickLendModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateQuickLendPreview();
+            });
+
+            document.getElementById('createGroupBtn').addEventListener('click', function() {
+                window.location.href = '../groups.html#create';
+            });
+
+            document.getElementById('viewLedgersBtn').addEventListener('click', function() {
+                window.location.href = '../ledger.html';
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                window.utils.clearCurrentUser();
+                window.showToast('Logged out successfully', 'success');
+                setTimeout(() => {
+                    window.location.href = '../../index.html';
+                }, 1000);
+            });
+
+            document.getElementById('switchRoleBtn').addEventListener('click', function() {
+                window.showToast('Switch to borrower role from the main registration page', 'info');
+                setTimeout(() => {
+                    window.location.href = '../../index.html#registration';
+                }, 1500);
+            });
+
+            document.getElementById('notificationsBtn').addEventListener('click', function() {
+                const panel = document.getElementById('notificationsPanel');
+                panel.classList.toggle('active');
+            });
+
+            document.getElementById('subscriptionBtn').addEventListener('click', function() {
+                window.location.href = '../subscriptions.html';
+            });
+
+            document.getElementById('startLendingBtn').addEventListener('click', function() {
+                document.getElementById('quickLendModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            document.getElementById('renewSubscriptionBtn').addEventListener('click', function() {
+                window.location.href = '../subscriptions.html#renew';
+            });
+
+            document.getElementById('upgradeSubscriptionBtn').addEventListener('click', function() {
+                window.location.href = '../subscriptions.html#upgrade';
+            });
+
+            document.getElementById('viewDetailsBtn').addEventListener('click', function() {
+                window.location.href = '../subscriptions.html';
+            });
+
+            // Close modals
+            document.querySelectorAll('.modal-close, .close-modal').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.modal').classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Quick lend form
+            const quickLendForm = document.getElementById('quickLendForm');
+            const lendAmount = document.getElementById('lendAmount');
+            const lendPeriod = document.getElementById('lendPeriod');
+
+            function updateQuickLendPreview() {
+                const amount = parseFloat(lendAmount.value) || 0;
+                const period = parseInt(lendPeriod.value) || 7;
+                const weeks = period / 7;
+                const interest = amount * 0.10 * weeks;
+                const total = amount + interest;
+                const daily = total / period;
+
+                document.getElementById('previewPrincipal').textContent = window.utils.formatCurrency(amount);
+                document.getElementById('previewLendInterest').textContent = window.utils.formatCurrency(interest);
+                document.getElementById('previewLendTotal').textContent = window.utils.formatCurrency(total);
+                document.getElementById('previewLendDaily').textContent = window.utils.formatCurrency(daily);
+            }
+
+            lendAmount.addEventListener('input', updateQuickLendPreview);
+            lendPeriod.addEventListener('change', updateQuickLendPreview);
+
+            quickLendForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const amount = parseFloat(lendAmount.value);
+                const category = document.getElementById('lendCategory').value;
+                const borrower = document.getElementById('lendBorrower').value;
+                const group = document.getElementById('lendGroup').value;
+                const period = parseInt(lendPeriod.value);
+
+                if (!category || !borrower || !group) {
+                    window.showToast('Please fill in all required fields', 'error');
+                    return;
+                }
+
+                if (!document.getElementById('agreeLendTerms').checked) {
+                    window.showToast('Please agree to the lending terms', 'error');
+                    return;
+                }
+
+                // Simulate loan approval
+                window.showToast('Loan approved! Please disburse funds to borrower and update ledger.', 'success');
+                
+                // Close modal
+                document.getElementById('quickLendModal').classList.remove('active');
+                document.body.style.overflow = '';
+
+                // Reset form
+                quickLendForm.reset();
+                updateQuickLendPreview();
+            });
+
+            // Load user groups for quick lend
+            const userGroups = window.utils.getItem('m-pesewa-user-groups', []);
+            const lendGroupSelect = document.getElementById('lendGroup');
+            userGroups.forEach(group => {
+                const option = document.createElement('option');
+                option.value = group.id;
+                option.textContent = group.name;
+                lendGroupSelect.appendChild(option);
+            });
+
+            // Update dashboard stats
+            updateDashboardStats();
+
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('active');
+            });
+
+            document.getElementById('closeMenuBtn').addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+
+            // Borrower profile buttons
+            document.querySelectorAll('[data-borrower]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const borrowerId = this.dataset.borrower;
+                    if (this.textContent.includes('View Profile')) {
+                        window.showToast(`Viewing profile for ${borrowerId}`, 'info');
+                    } else {
+                        document.getElementById('quickLendModal').classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        // Pre-select borrower
+                        document.getElementById('lendBorrower').value = borrowerId;
+                    }
+                });
+            });
+        });
+
+        function updateSubscriptionInfo(user) {
+            const tier = user.subscriptionTier || 'premium';
+            const tierInfo = window.utils.getTierById(tier);
+            
+            // Update tier limit
+            const limit = tierInfo.weeklyLimit || tierInfo.monthlyLimit || tierInfo.max;
+            const limitText = tierInfo.weeklyLimit ? `≤ ${window.utils.formatCurrency(limit)}/week` : 
+                            tierInfo.monthlyLimit ? `≤ ${window.utils.formatCurrency(limit)}/month` : 
+                            `≤ ${window.utils.formatCurrency(limit)}`;
+            
+            document.getElementById('tierLimit').textContent = limitText;
+            document.getElementById('tierLimitHint').textContent = `Your tier limit: ${limitText}`;
+            
+            // Update subscription dates (mock data)
+            const expiryDate = new Date();
+            expiryDate.setDate(28); // 28th of current month
+            expiryDate.setMonth(expiryDate.getMonth() + 1);
+            
+            const daysRemaining = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('expiryDate').textContent = expiryDate.toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            }).replace(/(\d+)(th|st|nd|rd)/, '$1');
+            
+            document.getElementById('daysRemaining').textContent = `${daysRemaining} days`;
+            document.getElementById('sidebarExpiry').textContent = `Expires: ${expiryDate.getDate()}th ${expiryDate.toLocaleDateString('en-US', { month: 'short' })}`;
+            
+            // Update payment info
+            document.getElementById('paymentCycle').textContent = 'Monthly';
+            document.getElementById('nextPayment').textContent = window.utils.formatCurrency(tierInfo.monthly);
+            
+            // Update usage (mock data)
+            const used = 2500;
+            const available = limit;
+            const usagePercentage = Math.min(Math.round((used / available) * 100), 100);
+            
+            document.getElementById('usedAmount').textContent = window.utils.formatCurrency(used);
+            document.getElementById('availableAmount').textContent = window.utils.formatCurrency(available);
+            document.getElementById('usagePercentage').textContent = `${usagePercentage}%`;
+            document.getElementById('usageBar').style.width = `${usagePercentage}%`;
+            
+            // Update alert badge if subscription expiring soon
+            if (daysRemaining <= 7) {
+                document.getElementById('subscriptionAlert').style.display = 'inline-block';
+                document.getElementById('subscriptionStatus').textContent = `${daysRemaining}d`;
+                document.getElementById('subscriptionStatus').classList.add('warning');
+            }
+        }
+
+        function updateDashboardStats() {
+            // Simulate loading data
+            setTimeout(() => {
+                document.getElementById('quickTotalLent').textContent = '₵25,000';
+                document.getElementById('quickActiveLoans').textContent = '5';
+                document.getElementById('quickBorrowers').textContent = '3';
+                
+                document.getElementById('totalPortfolio').textContent = '₵27,500';
+                document.getElementById('totalInterest').textContent = '₵2,500';
+                document.getElementById('activeBorrowers').textContent = '3';
+                document.getElementById('repaymentRate').textContent = '98%';
+                
+                document.getElementById('groupsCount').textContent = '2';
+                document.getElementById('ledgersCount').textContent = '5';
+                document.getElementById('notificationCount').textContent = '3';
+                document.getElementById('blacklistCount').textContent = '0';
+                
+                // Update active loans table
+                const activeLoansTable = document.getElementById('activeLoansTable');
+                activeLoansTable.innerHTML = `
+                    <tr>
+                        <td>
+                            <div class="borrower-cell">
+                                <div class="borrower-avatar-small">👤</div>
+                                <div class="borrower-details">
+                                    <div class="borrower-name">John Doe</div>
+                                    <div class="borrower-rating-small">4.8/5</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>₵5,000</td>
+                        <td><span class="category-tag">Transport</span></td>
+                        <td>Feb 25, 2024</td>
+                        <td><span class="days-badge warning">3 days</span></td>
+                        <td>₵500</td>
+                        <td><span class="status-badge active">Active</span></td>
+                        <td>
+                            <button class="btn-icon-small" title="Update Ledger">📝</button>
+                            <button class="btn-icon-small" title="Contact">📞</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="borrower-cell">
+                                <div class="borrower-avatar-small">👩</div>
+                                <div class="borrower-details">
+                                    <div class="borrower-name">Sarah Mwangi</div>
+                                    <div class="borrower-rating-small">5.0/5</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>₵2,500</td>
+                        <td><span class="category-tag">Food</span></td>
+                        <td>Mar 1, 2024</td>
+                        <td><span class="days-badge safe">7 days</span></td>
+                        <td>₵250</td>
+                        <td><span class="status-badge active">Active</span></td>
+                        <td>
+                            <button class="btn-icon-small" title="Update Ledger">📝</button>
+                            <button class="btn-icon-small" title="Contact">📞</button>
+                        </td>
+                    </tr>
+                `;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
